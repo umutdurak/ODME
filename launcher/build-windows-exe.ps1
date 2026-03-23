@@ -8,9 +8,37 @@ $distDir = Join-Path $repoRoot "dist"
 $appDir = Join-Path $distDir "ODME"
 $pomPath = Join-Path $repoRoot "pom.xml"
 
+function Resolve-MavenCommand {
+    $command = Get-Command mvn.cmd -ErrorAction SilentlyContinue
+    if ($null -ne $command) {
+        return $command.Source
+    }
+
+    if ($env:MAVEN_HOME) {
+        $fromMavenHome = Join-Path $env:MAVEN_HOME "bin\mvn.cmd"
+        if (Test-Path $fromMavenHome) {
+            return $fromMavenHome
+        }
+    }
+
+    $knownPaths = @(
+        "C:\Tools\apache-maven-3.9.14\bin\mvn.cmd",
+        "C:\apache-maven-3.9.14\bin\mvn.cmd"
+    )
+
+    foreach ($path in $knownPaths) {
+        if (Test-Path $path) {
+            return $path
+        }
+    }
+
+    throw "Could not find mvn.cmd. Install Maven or add it to PATH/MAVEN_HOME."
+}
+
 [xml]$pom = Get-Content $pomPath
 $projectVersion = $pom.project.version
 $appVersion = ($projectVersion -replace "-SNAPSHOT$", "")
+$mavenCommand = Resolve-MavenCommand
 
 Write-Host "Building application jar..."
 if (-not (Test-Path $mavenRepoDir)) {
@@ -18,7 +46,7 @@ if (-not (Test-Path $mavenRepoDir)) {
 }
 Push-Location $repoRoot
 try {
-    & mvn -q "-Dmaven.repo.local=$mavenRepoDir" -DskipTests package
+    & $mavenCommand -q "-Dmaven.repo.local=$mavenRepoDir" -DskipTests package
     if ($LASTEXITCODE -ne 0) {
         throw "Maven package failed with exit code $LASTEXITCODE."
     }

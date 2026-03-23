@@ -9,6 +9,35 @@ $repoRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $mavenRepoDir = Join-Path $repoRoot "build\.m2\repository"
 $launcherScript = Join-Path $repoRoot "launcher\build-windows-exe.ps1"
 
+function Resolve-MavenCommand {
+    $command = Get-Command mvn.cmd -ErrorAction SilentlyContinue
+    if ($null -ne $command) {
+        return $command.Source
+    }
+
+    if ($env:MAVEN_HOME) {
+        $fromMavenHome = Join-Path $env:MAVEN_HOME "bin\mvn.cmd"
+        if (Test-Path $fromMavenHome) {
+            return $fromMavenHome
+        }
+    }
+
+    $knownPaths = @(
+        "C:\Tools\apache-maven-3.9.14\bin\mvn.cmd",
+        "C:\apache-maven-3.9.14\bin\mvn.cmd"
+    )
+
+    foreach ($path in $knownPaths) {
+        if (Test-Path $path) {
+            return $path
+        }
+    }
+
+    throw "Could not find mvn.cmd. Install Maven or add it to PATH/MAVEN_HOME."
+}
+
+$mavenCommand = Resolve-MavenCommand
+
 function Ensure-MavenRepo {
     if (-not (Test-Path $mavenRepoDir)) {
         New-Item -ItemType Directory -Path $mavenRepoDir -Force | Out-Null
@@ -24,7 +53,7 @@ function Invoke-Maven {
     Ensure-MavenRepo
     Push-Location $repoRoot
     try {
-        & mvn "-Dmaven.repo.local=$mavenRepoDir" @Arguments
+        & $mavenCommand "-Dmaven.repo.local=$mavenRepoDir" @Arguments
         if ($LASTEXITCODE -ne 0) {
             throw "Maven failed with exit code $LASTEXITCODE."
         }

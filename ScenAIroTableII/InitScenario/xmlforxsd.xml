@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<entity xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ses.xsd" name="ScenAIroRunwayDetectionDataset">
+<aspect name="ScenarioParametersDec">
+<entity name="StaticEnvironmentalConditions">
+<aspect name="StaticEnvironmentalConditionsDec">
+<entity name="Scenery">
+<specialization name="ScenerySpec">
+<entity name="FarmlandNearAirport">
+</entity>
+<entity name="GrassFields">
+</entity>
+<entity name="UrbanIndustrialZones">
+</entity>
+</specialization>
+</entity>
+<entity name="Airport">
+<specialization name="AirportSpec">
+<entity name="StuttgartEDDS">
+</entity>
+<entity name="ZurichLSZH">
+</entity>
+<entity name="MunichEDDM">
+</entity>
+<entity name="RomeLIRF">
+</entity>
+<entity name="LilleLFQQ">
+</entity>
+</specialization>
+</entity>
+<entity name="RunwayConfiguration">
+<specialization name="RunwayConfigurationSpec">
+<entity name="SingleRunway">
+</entity>
+<entity name="ParallelRunways">
+</entity>
+<entity name="LightsAtNight">
+</entity>
+</specialization>
+</entity>
+<entity name="SurfaceType">
+<specialization name="SurfaceTypeSpec">
+<entity name="Asphalt">
+</entity>
+<entity name="Concrete">
+</entity>
+</specialization>
+</entity>
+</aspect>
+</entity>
+<entity name="DynamicElements">
+<aspect name="DynamicElementsDec">
+<entity name="WeatherObjects">
+<specialization name="WeatherObjectsSpec">
+<entity name="HeavyRain">
+</entity>
+<entity name="Clouds">
+</entity>
+</specialization>
+</entity>
+</aspect>
+</entity>
+<entity name="OperationalConditions">
+<aspect name="OperationalConditionsDec">
+<entity name="FlightParameters">
+<var name="OperationMode" type="string" default="ILSLanding"> </var>
+<var name="DistanceToRunwayKm" type="double" default="2.83" lower="0.1" upper="5.56"> </var>
+<var name="VerticalAngleDeg" type="double" default="3.0" lower="2.2" upper="3.8"> </var>
+<var name="LateralDeviationDeg" type="double" default="0.0" lower="-4.0" upper="4.0"> </var>
+<var name="Azimuth" type="string" default="aligned"> </var>
+<var name="PitchDeg" type="double" default="0.0" lower="0.0" upper="0.0"> </var>
+<var name="RollDeg" type="double" default="0.0" lower="0.0" upper="0.0"> </var>
+<var name="StartOffsetBeforeSunriseH" type="double" default="1.0" lower="1.0" upper="1.0"> </var>
+<var name="EndOffsetAfterSunsetH" type="double" default="1.0" lower="1.0" upper="1.0"> </var>
+<var name="TimeStepMinutes" type="int" default="30" lower="30" upper="30"> </var>
+<var name="TimeOfYear" type="string" default="EarlySpring"> </var>
+</entity>
+</aspect>
+</entity>
+<entity name="EnvironmentalConditions">
+<aspect name="EnvironmentalConditionsDec">
+<entity name="LightAndWeather">
+<specialization name="LightAndWeatherSpec">
+<entity name="Clear">
+</entity>
+<entity name="Clouds">
+</entity>
+<entity name="Rain">
+</entity>
+<entity name="Backlight">
+</entity>
+<entity name="Sunrise">
+</entity>
+<entity name="Sunset">
+</entity>
+</specialization>
+</entity>
+</aspect>
+</entity>
+</aspect>
+</entity>

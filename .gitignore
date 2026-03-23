@@ -8,6 +8,8 @@
 
 # Maven build
 target/
+build/
+dist/
 dependency-reduced-pom.xml
 
 # Java

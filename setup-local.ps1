@@ -78,7 +78,7 @@ function Get-BuiltJar {
 function Ensure-BuiltJar {
     $jar = Get-BuiltJar
     if ($null -eq $jar) {
-        Invoke-Maven -Arguments @("clean", "package", "-DskipTests")
+        Invoke-Maven -Arguments @("clean", "package", "-Dmaven.test.skip=true")
         $jar = Get-BuiltJar
     }
 
@@ -91,7 +91,7 @@ function Ensure-BuiltJar {
 
 switch ($Action) {
     "build" {
-        Invoke-Maven -Arguments @("clean", "package", "-DskipTests")
+        Invoke-Maven -Arguments @("clean", "package", "-Dmaven.test.skip=true")
     }
     "test" {
         Invoke-Maven -Arguments @("test")
@@ -128,6 +128,6 @@ switch ($Action) {
         }
     }
     "all" {
-        Invoke-Maven -Arguments @("clean", "test", "package")
+        Invoke-Maven -Arguments @("clean", "test", "package", "-Dmaven.test.skip=true")
     }
 }

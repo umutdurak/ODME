@@ -46,7 +46,7 @@ if (-not (Test-Path $mavenRepoDir)) {
 }
 Push-Location $repoRoot
 try {
-    & $mavenCommand -q "-Dmaven.repo.local=$mavenRepoDir" -DskipTests package
+    & $mavenCommand -q "-Dmaven.repo.local=$mavenRepoDir" -Dmaven.test.skip=true package
     if ($LASTEXITCODE -ne 0) {
         throw "Maven package failed with exit code $LASTEXITCODE."
     }

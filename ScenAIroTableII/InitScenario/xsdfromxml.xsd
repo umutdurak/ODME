@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" 
+ elementFormDefault="qualified" vc:minVersion="1.1" >
+
+<xs:element name="ScenAIroRunwayDetectionDataset">
+<xs:complexType>
+<xs:sequence id="ScenarioParametersDec">
+<xs:element name="StaticEnvironmentalConditions">
+<xs:complexType>
+<xs:sequence id="StaticEnvironmentalConditionsDec">
+<xs:element name="Scenery">
+<xs:complexType>
+<xs:choice id="ScenerySpec">
+<xs:element name="FarmlandNearAirport">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="GrassFields">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="UrbanIndustrialZones">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Airport">
+<xs:complexType>
+<xs:choice id="AirportSpec">
+<xs:element name="StuttgartEDDS">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="ZurichLSZH">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="MunichEDDM">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="RomeLIRF">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="LilleLFQQ">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="RunwayConfiguration">
+<xs:complexType>
+<xs:choice id="RunwayConfigurationSpec">
+<xs:element name="SingleRunway">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="ParallelRunways">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="LightsAtNight">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="SurfaceType">
+<xs:complexType>
+<xs:choice id="SurfaceTypeSpec">
+<xs:element name="Asphalt">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Concrete">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="DynamicElements">
+<xs:complexType>
+<xs:sequence id="DynamicElementsDec">
+<xs:element name="WeatherObjects">
+<xs:complexType>
+<xs:choice id="WeatherObjectsSpec">
+<xs:element name="HeavyRain">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Clouds">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="OperationalConditions">
+<xs:complexType>
+<xs:sequence id="OperationalConditionsDec">
+<xs:element name="FlightParameters">
+<xs:complexType>
+<xs:attribute name="OperationMode" type="string" default="ILSLanding">
+</xs:attribute>
+<xs:attribute name="DistanceToRunwayKm" type="double" default="2.83">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="0.1"/>
+<xs:maxInclusive value="5.56"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="VerticalAngleDeg" type="double" default="3.0">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="2.2"/>
+<xs:maxInclusive value="3.8"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="LateralDeviationDeg" type="double" default="0.0">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="-4.0"/>
+<xs:maxInclusive value="4.0"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="Azimuth" type="string" default="aligned">
+</xs:attribute>
+<xs:attribute name="PitchDeg" type="double" default="0.0">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="0.0"/>
+<xs:maxInclusive value="0.0"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="RollDeg" type="double" default="0.0">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="0.0"/>
+<xs:maxInclusive value="0.0"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="StartOffsetBeforeSunriseH" type="double" default="1.0">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="1.0"/>
+<xs:maxInclusive value="1.0"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="EndOffsetAfterSunsetH" type="double" default="1.0">
+<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:type value="double"/>
+<xs:minInclusive value="1.0"/>
+<xs:maxInclusive value="1.0"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="TimeStepMinutes" type="int" default="30">
+<xs:simpleType>
+<xs:restriction base="xs:int">
+<xs:type value="int"/>
+<xs:minInclusive value="30"/>
+<xs:maxInclusive value="30"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="TimeOfYear" type="string" default="EarlySpring">
+</xs:attribute>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="EnvironmentalConditions">
+<xs:complexType>
+<xs:sequence id="EnvironmentalConditionsDec">
+<xs:element name="LightAndWeather">
+<xs:complexType>
+<xs:choice id="LightAndWeatherSpec">
+<xs:element name="Clear">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Clouds">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Rain">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Backlight">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Sunrise">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+<xs:element name="Sunset">
+<xs:complexType>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:choice>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+<xs:attribute name="name" use="optional"/> 
+</xs:complexType>
+</xs:element>
+</xs:schema>

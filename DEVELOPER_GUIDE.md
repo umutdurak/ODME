@@ -9,9 +9,9 @@ It explains how to set up the project, follow safe workflows, and ensure the CI/
 ## Getting Started
 
 ### 1. Clone the Repository
-git clone https://github.com/aeronautical-informatics/ODME.git
+git clone https://github.com/AIgsid/ODME-latest.git
 
-cd ODME
+cd ODME-latest
 
 ### 2. Build the Project
 We use Maven:

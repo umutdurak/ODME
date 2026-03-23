@@ -10,8 +10,8 @@ enhancements, and ideas — are welcome.
 ### 1. Fork and branch
 
 ```bash
-git clone https://github.com/umutdurak/ODME.git
-cd ODME
+git clone https://github.com/AIgsid/ODME-latest.git
+cd ODME-latest
 git checkout -b feature/my-improvement
 ```
 
